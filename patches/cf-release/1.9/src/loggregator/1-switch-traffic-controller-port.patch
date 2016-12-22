@@ -1,0 +1,42 @@
+From 7cde9f422a1325d9017349163aa7e76123157979 Mon Sep 17 00:00:00 2001
+From: Mark McDonald <mmcdonald@pivotal.io>
+Date: Thu, 8 Dec 2016 14:11:08 -0500
+Subject: [PATCH] Switch trafficcontroller port to 6062
+
+* So it does not conflict with doppler hardcoded port of 6060
+
+Signed-off-by: Anthony Emengo <aemengo@pivotal.io>
+---
+ jobs/loggregator_trafficcontroller/templates/dns_health_check.erb | 2 +-
+ src/trafficcontroller/main.go                                     | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/jobs/loggregator_trafficcontroller/templates/dns_health_check.erb b/jobs/loggregator_trafficcontroller/templates/dns_health_check.erb
+index 0366df6..6cdd74c 100644
+--- a/jobs/loggregator_trafficcontroller/templates/dns_health_check.erb
++++ b/jobs/loggregator_trafficcontroller/templates/dns_health_check.erb
+@@ -1,7 +1,7 @@
+ #!/bin/bash
+ 
+ # Use the traffic controller's pprof port
+-nc -z 127.0.0.1 6060
++nc -z 127.0.0.1 6062
+ 
+ # http://www.consul.io/docs/agent/checks.html
+ if [ $? -ne 0 ]; then
+diff --git a/src/trafficcontroller/main.go b/src/trafficcontroller/main.go
+index 5498ff8..2a1e1c3 100644
+--- a/src/trafficcontroller/main.go
++++ b/src/trafficcontroller/main.go
+@@ -43,7 +43,7 @@ import (
+ )
+ 
+ const (
+-	pprofPort            = "6060"
++	pprofPort            = "6062"
+ 	handshakeTimeout     = 5 * time.Second
+ 	defaultBatchInterval = 5 * time.Second
+ 	statsInterval        = 10 * time.Second
+-- 
+2.9.2
+

@@ -1,0 +1,55 @@
+---
+azs:
+- name: z1
+  cloud_properties: {availability_zone: us-east-1a}
+
+networks:
+- name: cf_public
+  type: manual
+  subnets:
+  - range: 10.0.0.0/24
+    gateway: 10.0.0.1
+    dns: [10.0.0.2]
+    reserved: ["10.0.0.2 - 10.0.0.10"]
+    static: ["10.0.0.111 - 10.0.0.130"]
+    cloud_properties:
+      subnet: REPLACE-WITH-SUBNET-ID
+      security_groups: [REPLACE-WITH-SECURITY-GROUP-ID]
+
+- name: elastic
+  type: vip
+  cloud_properties: {}
+
+compilation:
+  workers: 11
+  network: cf_public
+  reuse_compilation_vms: true
+  cloud_properties:
+    availability_zone: us-east-1a
+    instance_type: c3.large
+
+resource_pools:
+- name: colocated
+  network: cf_public
+  stemcell:
+    name: bosh-aws-xen-hvm-ubuntu-trusty-go_agent
+    version: latest
+  cloud_properties:
+    availability_zone: us-east-1a
+    instance_type: m4.4xlarge
+    ephemeral_disk:
+      size: 100000
+      type: io1
+      iops: 1200
+- name: default
+  network: cf_public
+  stemcell:
+    name: bosh-aws-xen-hvm-ubuntu-trusty-go_agent
+    version: latest
+  cloud_properties:
+    availability_zone: us-east-1a
+    instance_type: m4.2xlarge
+    ephemeral_disk:
+      size: 100000
+      type: io1
+      iops: 1200

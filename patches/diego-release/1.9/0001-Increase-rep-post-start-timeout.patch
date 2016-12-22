@@ -1,0 +1,26 @@
+From 579a8ed954de0bc27fd69bc42aa16b44919429e2 Mon Sep 17 00:00:00 2001
+From: Anthony Emengo <aemengo@pivotal.io>
+Date: Thu, 8 Dec 2016 15:02:07 -0500
+Subject: [PATCH] Increase rep post-start timeout
+
+Signed-off-by: Mark McDonald <mmcdonald@pivotal.io>
+---
+ jobs/rep/templates/post-start.erb | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/jobs/rep/templates/post-start.erb b/jobs/rep/templates/post-start.erb
+index a0a7186..70701d5 100644
+--- a/jobs/rep/templates/post-start.erb
++++ b/jobs/rep/templates/post-start.erb
+@@ -2,7 +2,7 @@
+ 
+ address=<%= p("diego.rep.listen_addr").sub(/^0\.0\.0\.0:/, "localhost:") %>
+ start=`date +%s`
+-timeout=300
++timeout=1200
+ 
+ echo "$(date): Pinging rep..."
+ i=1
+-- 
+2.9.2
+

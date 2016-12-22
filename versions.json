@@ -1,0 +1,32 @@
+{
+ "diego" : {
+    "version": "v0.1487.0-1-gdf83e27",
+    "sha1": "fa3cac32fc4298f1755126b3139b761d959022dd",
+    "source_location": "https://github.com/cloudfoundry/diego-release.git",
+    "compiled_release_url": "https://s3.amazonaws.com/pcfdev/compiled-releases/diego-v0.1487.0-1-gdf83e27.tgz"
+  },
+  "cf": {
+    "version": "v245-4-g3a1ac23",
+    "sha1": "46e8381614624cc3584a0a50bdda3cbe67d5d4ac",
+    "source_location": "https://github.com/cloudfoundry/cf-release.git",
+    "compiled_release_url": "https://s3.amazonaws.com/pcfdev/compiled-releases/cf-v245-4-g3a1ac23.tgz"
+  },
+  "etcd": {
+    "version": "v73",
+    "sha1": "29a1ed551b641ea734a7aa8b15d0602b1b223ce9",
+    "source_location": "https://github.com/cloudfoundry-incubator/etcd-release.git",
+    "compiled_release_url": "https://s3.amazonaws.com/pcfdev/compiled-releases/etcd-v73.tgz"
+  },
+  "garden_runc" : {
+    "version": "v0.9.0",
+    "sha1": "bac73264bfa41f9e4a1dc5c11b5b36b112dd12bb",
+    "source_location": "https://github.com/cloudfoundry/garden-runc-release.git",
+    "compiled_release_url": "https://s3.amazonaws.com/pcfdev/compiled-releases/garden-runc-v0.9.0.tgz"
+  },
+  "cflinuxfs2_rootfs": {
+    "version": "v1.35.0",
+    "sha1": "8ad4f9ccbc0df7fbd072a3a756bbf2414a830959",
+    "source_location": "git@github.com:cloudfoundry/cflinuxfs2-rootfs-release",
+    "compiled_release_url": "https://s3.amazonaws.com/pcfdev/compiled-releases/cflinuxfs2-v1.35.0.tgz"
+  }
+}

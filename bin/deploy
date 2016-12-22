@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+
+set -x
+
+if [[ "$1" != "small" ]] && [[ "$1" != "medium" ]] && [[ "$1" != "large" ]]; then
+    echo "Usage: $0 (small|medium|large)"
+    exit 1
+fi
+
+if ! bosh target; then
+    echo "you must target a working bosh director to deploy"
+    exit 1
+fi
+
+dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && cd .. && pwd )"
+
+versions=$(cat $dir/versions.json)
+
+cf_url=$(echo $versions | jq -r .cf.compiled_release_url)
+diego_url=$(echo $versions | jq -r .diego.compiled_release_url)
+etcd_url=$(echo $versions | jq -r .etcd.compiled_release_url)
+garden_runc_url=$(echo $versions | jq -r .garden_runc.compiled_release_url)
+linux_rootfs_url=$(echo $versions | jq -r .cflinuxfs2_rootfs.compiled_release_url)
+
+bosh upload release $cf_url
+bosh upload release $diego_url
+bosh upload release $etcd_url
+bosh upload release $linux_rootfs_url
+bosh upload release $garden_runc_url
+
+bosh upload stemcell https://s3.amazonaws.com/bosh-aws-light-stemcells/light-bosh-stemcell-3312.7-aws-xen-hvm-ubuntu-trusty-go_agent.tgz
+
+bosh update cloud-config ${dir}/cloud-config.yml
+
+bosh -n -d ${dir}/manifest-${1}.yml deploy

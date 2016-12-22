@@ -1,0 +1,16 @@
+---
+starting_versions:
+- version: 0
+  ref: v245
+  patches:
+    - "1-remove-windows-jobs-and-packages.patch"
+  submodules:
+    "src/loggregator":
+      patches:
+      - "src/loggregator/1-switch-traffic-controller-port.patch"
+    "src/uaa-release":
+      patches:
+      - "src/uaa-release/1-interpolate-domain-in-yml.patch"
+    "src/capi-release/src/code.cloudfoundry.org/stager":
+      patches:
+      - "src/capi-release/src/code.cloudfoundry.org/stager/1-bump-consul-ttl-timeout.patch"

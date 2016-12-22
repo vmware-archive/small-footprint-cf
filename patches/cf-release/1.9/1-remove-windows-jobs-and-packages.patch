@@ -1,0 +1,46 @@
+From 4fbcf998b22020241a1d2fc6091f17137b053dd3 Mon Sep 17 00:00:00 2001
+From: Anthony Emengo <aemengo@pivotal.io>
+Date: Thu, 8 Dec 2016 15:23:53 -0500
+Subject: [PATCH] Remove windows jobs and packages
+
+- Fixes pre-compilation breaking on linux BOSH Director
+
+* Not a necessary change needed for single vm colocated CF deployment
+
+Signed-off-by: Mark McDonald <mmcdonald@pivotal.io>
+---
+ jobs/metron_agent_windows     | 1 -
+ packages/golang1.7-windows    | 1 -
+ packages/metron_agent_windows | 1 -
+ 3 files changed, 3 deletions(-)
+ delete mode 120000 jobs/metron_agent_windows
+ delete mode 120000 packages/golang1.7-windows
+ delete mode 120000 packages/metron_agent_windows
+
+diff --git a/jobs/metron_agent_windows b/jobs/metron_agent_windows
+deleted file mode 120000
+index 0fbc592..0000000
+--- a/jobs/metron_agent_windows
++++ /dev/null
+@@ -1 +0,0 @@
+-../src/loggregator/jobs/metron_agent_windows
+\ No newline at end of file
+diff --git a/packages/golang1.7-windows b/packages/golang1.7-windows
+deleted file mode 120000
+index 9b87051..0000000
+--- a/packages/golang1.7-windows
++++ /dev/null
+@@ -1 +0,0 @@
+-../src/loggregator/packages/golang1.7-windows
+\ No newline at end of file
+diff --git a/packages/metron_agent_windows b/packages/metron_agent_windows
+deleted file mode 120000
+index 9055a71..0000000
+--- a/packages/metron_agent_windows
++++ /dev/null
+@@ -1 +0,0 @@
+-../src/loggregator/packages/metron_agent_windows
+\ No newline at end of file
+-- 
+2.9.2
+

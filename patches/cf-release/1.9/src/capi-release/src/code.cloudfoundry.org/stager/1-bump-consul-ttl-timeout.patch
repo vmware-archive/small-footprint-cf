@@ -1,0 +1,26 @@
+From 014a93261a65277adfaadbb5b2ec7bda62b7ba36 Mon Sep 17 00:00:00 2001
+From: Mark McDonald <mmcdonald@pivotal.io>
+Date: Thu, 8 Dec 2016 14:23:56 -0500
+Subject: [PATCH] Bump consul TTL timeout
+
+Signed-off-by: Anthony Emengo <aemengo@pivotal.io>
+---
+ cmd/stager/main.go | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/cmd/stager/main.go b/cmd/stager/main.go
+index e845216..98c2ffa 100644
+--- a/cmd/stager/main.go
++++ b/cmd/stager/main.go
+@@ -286,7 +286,7 @@ func initializeRegistrationRunner(logger lager.Logger, consulClient consuladapte
+ 		Name: "stager",
+ 		Port: port,
+ 		Check: &api.AgentServiceCheck{
+-			TTL: "3s",
++			TTL: "30s",
+ 		},
+ 	}
+ 	return locket.NewRegistrationRunner(logger, registration, consulClient, locket.RetryInterval, clock)
+-- 
+2.9.2
+

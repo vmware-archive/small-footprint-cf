@@ -1,0 +1,26 @@
+From 4f9612ba0e7e378d9279f630190e904bab43a6eb Mon Sep 17 00:00:00 2001
+From: Anthony Emengo <aemengo@pivotal.io>
+Date: Thu, 8 Dec 2016 14:13:03 -0500
+Subject: [PATCH] Correctly interpolate domain in uaa login.yml
+
+Signed-off-by: Mark McDonald <mmcdonald@pivotal.io>
+---
+ jobs/uaa/templates/uaa.yml.erb | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/jobs/uaa/templates/uaa.yml.erb b/jobs/uaa/templates/uaa.yml.erb
+index e578377..1f312b7 100644
+--- a/jobs/uaa/templates/uaa.yml.erb
++++ b/jobs/uaa/templates/uaa.yml.erb
+@@ -270,7 +270,7 @@
+   #internal hostnames for subdomain mapping
+   internal_hostnames = []
+   if_p('domain') do |domain|
+-    internal_hostnames.push('login.#{domain}')
++    internal_hostnames.push("login.#{domain}")
+   end
+   p_arr('uaa.zones.internal.hostnames').each do |hostname|
+     internal_hostnames.push(hostname)
+-- 
+2.9.2
+
