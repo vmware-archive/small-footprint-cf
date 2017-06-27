@@ -1,4 +1,7 @@
 # Small-footprint CF
+
+> **WARNING:** This repo is an experimental sandbox for evaluating colocation strategies. It is not supported and should not be used for production or internet-accessible deployments.
+
 This project provides manifests and tooling for create CF deployments of various sizes.
 The smallest deployment is co-located entirely on a single VM.
 The medium deployment scales up to 3 VMs (a database, a brain, and a cell), and the large deployment is 17 VMs with each component having it's own VM.
